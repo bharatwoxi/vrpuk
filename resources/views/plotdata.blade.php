@@ -49,7 +49,7 @@
         var infoWindow = new google.maps.InfoWindow;
 
         // Change this depending on the name of your PHP or XML file
-        downloadUrl('http://localhost/vrpuk/public/plotDataJsonAPI', function(data) {
+        downloadUrl('http://www.vrpuk.woxisoftware.com/plotDataJsonAPI', function(data) {
             var jsonObj = JSON.parse(data.responseText);
             Array.prototype.forEach.call(jsonObj, function(markerElem) {
                 var name = markerElem.city_name;
