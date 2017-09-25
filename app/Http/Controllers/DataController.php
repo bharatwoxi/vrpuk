@@ -331,7 +331,9 @@ class DataController extends Controller
             $result = null;
             $distance = null;
             $result = json_decode($output, true); // convert it from JSON to php array
-            $distance = $result['rows'][0]['elements'][0]['distance']['value']/1000;
+            if ($result['status'] != 'OVER_QUERY_LIMIT') {
+                $distance = $result['rows'][0]['elements'][0]['distance']['value']/1000;
+            } 
             return $distance;
     }
 
