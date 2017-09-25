@@ -333,7 +333,7 @@ class DataController extends Controller
             $result = json_decode($output, true); // convert it from JSON to php array
             if ($result['status'] != 'OVER_QUERY_LIMIT') {
                 $distance = $result['rows'][0]['elements'][0]['distance']['value']/1000;
-            } 
+            }
             return $distance;
     }
 
@@ -359,7 +359,7 @@ class DataController extends Controller
         }
 
         $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrix";
-        $key = "&key=AIzaSyD-9jnTkbI1w2MOdWfwfd9riEGOHiorIEc";
+        $key = "&key=AIzaSyC4fAyRCp1XMnlL5vJvA0kOjTGoZLnScY0";
 
         $i = 0;
         foreach($cityList as $row) {
