@@ -78,9 +78,8 @@ class DataController extends Controller
         return view('plotdata')->with('data', $data);
     }
 
-    public function plotDataJsonAPI() {
-        $status = 200;
-        $data = array(
+    public function inputData() {
+        return array(
             array(
                 "city_name" => "London",
                 "station_name" => "Main Depot",
@@ -127,6 +126,264 @@ class DataController extends Controller
                 "type" => "D"
             ),
         );
+    }
+
+    public function getListOfCity(){
+        $cityList = [];
+        $input = $this->inputData();
+
+        foreach ($input as $key => $val) {
+            array_push($cityList, $val['city_name']);
+        }
+        return $cityList;
+    }
+
+    public function plotDataJsonAPI() {
+        $status = 200;
+        $data = $this->inputData();
         return json_encode($data, $status);
+    }
+
+    public function calculateDistanceUsingGDMAPI() {
+        $data = null;
+        $data = $this->createAdjMatrix();
+        return view('calculatedistances')->with('data', $data);
+    }
+
+    public function tspnnResult() {
+        $data = null;
+        $adj_matrix = $this->createAdjMatrix();
+        //TSP : NN Algo Here
+
+        $data = $this->tspnnWithoutDestinationAsHub($adj_matrix);
+        return view('tspnnresult')->with('data', $data);
+    }
+
+    public function plotRoute() {
+        $data = null;
+        $adj_matrix = $this->createAdjMatrix();
+        //TSP : NN Algo Here
+
+        $data = $this->tspnnWithoutDestinationAsHub($adj_matrix);
+        return view('plotroute')->with('data', $data);
+    }
+
+    public function plotRouteElevation() {
+        $data = null;
+        $adj_matrix = $this->createAdjMatrix();
+        //TSP : NN Algo Here
+
+        $data = $this->tspnnWithoutDestinationAsHub($adj_matrix);
+        return view('tspnnresultelevation')->with('data', $data);
+    }
+
+
+    public function tspnnWithoutDestinationAsHub($adj_matrix) {
+        $listOfStation = $this->getListOfCity();
+        $source = $listOfStation[0];
+        $destination = $listOfStation[0];
+        $path[] = array(
+            "start" => $source,
+            "start_lat" => $this->getStationLat($source),
+            "start_long" => $this->getStationLong($source),
+            "end" => $source,
+            "end_lat" => $this->getStationLat($source),
+            "end_long" => $this->getStationLong($source),
+            "cost" => 0
+        );
+        $traveller = $source;
+        while (count($path) != count($listOfStation)) {
+            $cost = null;
+            $traveller_path = $adj_matrix[$traveller];
+            //echo "Source : ".$traveller;
+            foreach ($traveller_path as $city => $tp_cost) {
+                if( ($city != $traveller) && (!in_array($city, array_column($path, 'end'))) ){
+                    if ($cost == null) {
+                        $start = $traveller;
+                        $cost = $tp_cost;
+                        $end = $city;
+                    } elseif ( $cost > $tp_cost) {
+                        $start = $traveller;
+                        $cost = $tp_cost;
+                        $end = $city;
+                    }
+                }
+            }
+            $path[] = array(
+                "start" => $start,
+                "start_lat" => $this->getStationLat($start),
+                "start_long" => $this->getStationLong($start),
+                "end" => $end,
+                "end_lat" => $this->getStationLat($end),
+                "end_long" => $this->getStationLong($end),
+                "cost" => $cost
+            );
+
+            $traveller = $end;
+        }
+        return $path;
+    }
+    public function tspnnWithDestinationAsHub($adj_matrix) {
+        $listOfStation = $this->getListOfCity();
+        $source = $listOfStation[0];
+        $destination = $listOfStation[0];
+        $path[] = array(
+            "start" => $source,
+            "end" => $source,
+            "cost" => 0
+        );
+        $traveller = $source;
+        while (count($path) != count($listOfStation)) {
+            $cost = null;
+            $traveller_path = $adj_matrix[$traveller];
+            //echo "Source : ".$traveller;
+            foreach ($traveller_path as $city => $tp_cost) {
+                if( ($city != $traveller) && (!in_array($city, array_column($path, 'end'))) ){
+                    if ($cost == null) {
+                        $start = $traveller;
+                        $cost = $tp_cost;
+                        $end = $city;
+                    } elseif ( $cost > $tp_cost) {
+                        $start = $traveller;
+                        $cost = $tp_cost;
+                        $end = $city;
+                    }
+                }
+            }
+            $path[] = array(
+                "start" => $start,
+                "end" => $end,
+                "cost" => $cost
+            );
+
+            $traveller = $end;
+        }
+
+        $path[] = array(
+            "start" => $traveller,
+            "start_lat" => $this->getStationLat($traveller),
+            "start_long" => $this->getStationLong($traveller),
+            "end" => $destination,
+            "end_lat" => $this->getStationLat($destination),
+            "end_long" => $this->getStationLong($destination),
+            "cost" => $adj_matrix[$traveller][$destination]
+        );
+        return $path;
+    }
+
+    public function getStationLat($city){
+        $inputData = $this->inputData();
+        foreach ($inputData as $data) {
+            if ($city == $data['city_name']) {
+                return $data['lat'];
+            }
+        }
+        return null;
+    }
+
+    public function getStationLong($city){
+        $inputData = $this->inputData();
+        foreach ($inputData as $data) {
+            if ($city == $data['city_name']) {
+                return $data['long'];
+            }
+        }
+        return null;
+    }
+
+    public function getdistance($Url) {
+
+            $output = null;
+
+            // is cURL installed yet?
+            if (!function_exists('curl_init')){
+                die('Sorry cURL is not installed!');
+            }
+
+            // OK cool - then let's create a new cURL resource handle
+            $ch = curl_init();
+
+            // Now set some options (most are optional)
+
+            // Set URL to download
+            curl_setopt($ch, CURLOPT_URL, $Url);
+
+            // Set a referer
+            //curl_setopt($ch, CURLOPT_REFERER, "http://www.example.org/yay.htm");
+
+            // User agent
+            //curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
+
+            // Include header in result? (0 = yes, 1 = no)
+            //curl_setopt($ch, CURLOPT_HEADER, 0);
+
+            // Should cURL return or print out the data? (true = return, false = print)
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // Timeout in seconds
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+
+            // Download the given URL, and return output
+            $output = curl_exec($ch);
+
+            // Close the cURL resource, and free system resources
+            curl_close($ch);
+            $result = null;
+            $distance = null;
+            $result = json_decode($output, true); // convert it from JSON to php array
+            $distance = $result['rows'][0]['elements'][0]['distance']['value']/1000;
+            return $distance;
+    }
+
+    public function createAdjMatrix() {
+        $dataCity = $this->inputData();
+        $cityList = [];
+        $cityLat = [];
+        $cityLong = [];
+        foreach ($dataCity as $city) {
+            array_push($cityList, $city['city_name']);
+            array_push($cityLat, $city['lat']);
+            array_push($cityLong, $city['long']);
+        }
+
+        /* This is where will save the adj. matrix */
+        $adj_matrix = array();
+
+        /* Reset the matrix to all '0's */
+        foreach($cityList as $row){
+            foreach($cityList as $col){
+                $adj_matrix[$row][$col] = 0;
+            }
+        }
+
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrix";
+        $key = "&key=AIzaSyD-9jnTkbI1w2MOdWfwfd9riEGOHiorIEc";
+
+        $i = 0;
+        foreach($cityList as $row) {
+            $j = 0;
+            foreach($cityList as $col) {
+                $distance = null;
+                if ($row == $col) {
+                    $adj_matrix[$row][$col] = 0;
+                } else {
+                    $sourceLat = $cityLat[$i];
+                    $sourceLong = $cityLong[$i];
+                    $destLat = $cityLat[$j];
+                    $destLong = $cityLong[$j];
+                    $origin = "&origins=".$sourceLat.",".$sourceLong;
+                    $dest = "&destinations=".$destLat.",".$destLong;
+                    $urlNew = null;
+                    $urlNew = $url.$origin.$dest.$key;
+                    $distance = $this->getdistance($urlNew);
+                    $adj_matrix[$row][$col] = $distance;
+                }
+                $j++;
+            }
+            $i++;
+        }
+
+        return $adj_matrix;
+
     }
 }

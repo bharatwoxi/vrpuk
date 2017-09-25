@@ -19,7 +19,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6" >
+                <div class="col-sm-4" >
                     <h3>Station Data</h3>
                     <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
                     @foreach ($data['stations'] as $station => $details)
@@ -38,7 +38,7 @@
                     @endforeach
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h3>Vehicle Data</h3>
                     <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
                         @foreach ($data['vehicles'] as $vehicle => $details)
@@ -47,6 +47,16 @@
                             @foreach ($details as $key => $value)
                                 <li class="list-group-item">{{ucfirst($key)}} : {{ucfirst($value)}}</li>
                             @endforeach
+                        </ul>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-sm-4" >
+                    <h3>Station List</h3>
+                    <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
+                        @foreach ($data['stations'] as $station => $details)
+                        <ul class="list-group">
+                            <li class="list-group-item">{{ucfirst($station)}}</li>
                         </ul>
                         @endforeach
                     </div>

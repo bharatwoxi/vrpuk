@@ -26,7 +26,7 @@
 <div class="text-center" style="background-color: #c2c2c2; padding: 10px;">
     <h2>Welcome To POC of TSP : NN - For Vehicle Routing Problem
         <button type="button" class="btn btn-success">
-            <a href="#" style="color: #f5f5f5">Calculate Distances using GDM API - Click Here</a>
+            <a href="calculateDistances" style="color: #f5f5f5">Calculate Distances using GDM API - Click Here</a>
         </button>
     </h2>
 </div>
@@ -49,37 +49,39 @@
         var infoWindow = new google.maps.InfoWindow;
 
         // Change this depending on the name of your PHP or XML file
-        downloadUrl('http://www.vrpuk.woxisoftware.com/plotDataJsonAPI', function(data) {
+        downloadUrl('http://localhost/vrpuk/public/plotDataJsonAPI', function(data) {
             var jsonObj = JSON.parse(data.responseText);
-            Array.prototype.forEach.call(jsonObj, function(markerElem) {
-                var name = markerElem.city_name;
-                var address = markerElem.address;
-                var station_name = markerElem.station_name;
-                var type = markerElem.type;
-                var point = new google.maps.LatLng(
-                    parseFloat(markerElem.lat),
-                    parseFloat(markerElem.long));
+            if (jsonObj.length != 0) {
+                Array.prototype.forEach.call(jsonObj, function(markerElem) {
+                    var name = markerElem.city_name;
+                    var address = markerElem.address;
+                    var station_name = markerElem.station_name;
+                    var type = markerElem.type;
+                    var point = new google.maps.LatLng(
+                        parseFloat(markerElem.lat),
+                        parseFloat(markerElem.long));
 
-                var infowincontent = document.createElement('div');
-                var strong = document.createElement('strong');
-                strong.textContent = name + " : " + station_name
-                infowincontent.appendChild(strong);
-                infowincontent.appendChild(document.createElement('br'));
+                    var infowincontent = document.createElement('div');
+                    var strong = document.createElement('strong');
+                    strong.textContent = name + " : " + station_name
+                    infowincontent.appendChild(strong);
+                    infowincontent.appendChild(document.createElement('br'));
 
-                var text = document.createElement('text');
-                text.textContent = address
-                infowincontent.appendChild(text);
-                var icon = customLabel[type] || {};
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: point,
-                    label: icon.label
+                    var text = document.createElement('text');
+                    text.textContent = address
+                    infowincontent.appendChild(text);
+                    var icon = customLabel[type] || {};
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: point,
+                        label: icon.label
+                    });
+                    marker.addListener('click', function() {
+                        infoWindow.setContent(infowincontent);
+                        infoWindow.open(map, marker);
+                    });
                 });
-                marker.addListener('click', function() {
-                    infoWindow.setContent(infowincontent);
-                    infoWindow.open(map, marker);
-                });
-            });
+            }
         });
     }
 
