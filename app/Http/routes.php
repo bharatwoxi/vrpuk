@@ -23,6 +23,9 @@ Route::get('plotRoute', array('uses' =>'DataController@plotRoute'));
 Route::get('plotRouteElevation', array('uses' =>'DataController@plotRouteElevation'));
 
 Route::get('getDistancesFromLatLong', array('uses' =>'DataController@getDistancesFromLatLong'));
+Route::get('plotRoutewithWayPoint', array('uses' =>'DataController@plotRoutewithWayPoint'));
+
+
 
 
 

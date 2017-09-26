@@ -261,6 +261,15 @@ class DataController extends Controller
         return view('plotroute')->with('data', $data);
     }
 
+    public function plotRoutewithWayPoint() {
+        $data = null;
+        $adj_matrix = $this->createAdjMatrix();
+        //TSP : NN Algo Here
+
+        $data = $this->tspnnWithoutDestinationAsHub($adj_matrix);
+        return view('plotwaypoints')->with('data', $data);
+    }
+
     public function plotRouteElevation() {
         $data = null;
         $adj_matrix = $this->createAdjMatrix();
@@ -315,7 +324,7 @@ class DataController extends Controller
             $traveller = $end;
         }
 
-/*        $path[] = array(
+        $path[] = array(
             "start" => $traveller,
             "start_lat" => $this->getStationLat($traveller),
             "start_long" => $this->getStationLong($traveller),
@@ -323,7 +332,7 @@ class DataController extends Controller
             "end_lat" => $this->getStationLat($destination),
             "end_long" => $this->getStationLong($destination),
             "cost" => $adj_matrix[$traveller][$destination]
-        );*/
+        );
 
         return $path;
     }

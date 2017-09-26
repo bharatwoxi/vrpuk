@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Welcome To TSP:NN - For Vehicle Routing Problem<</title>
     <meta charset="utf-8">
-    <title>Waypoints in directions</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
     <style>
         #right-panel {
             font-family: 'Roboto','sans-serif';
@@ -47,42 +51,34 @@
             background-color: #FFEE77;
             padding: 10px;
             overflow: scroll;
-            height: 174px;
+            height: 450px;
         }
     </style>
 </head>
 <body>
+<div class="row" class="text-center" style="background-color: #c2c2c2; padding: 10px;">
+    <div class="col-sm-8">
+        <h2>Welcome To POC of TSP : NN - For Vehicle Routing Problem</h2>
+    </div>
+    <div class="col-sm-4" style="margin-top: 1%" >
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Please Select to View Result
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="tspnnResult">List Form</a></li>
+                <li><a href="tspnnResult">Plot Route With Animated Symbol</a></li>
+                <!--<li><a href="plotRouteElevation">Showing Elevation Along Path</a></li>-->
+                <li><a href="plotRoutewithWayPoint">Route with Waypoint Google API</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div id="map"></div>
 <div id="right-panel">
     <div>
-        <b>Start:</b>
-        <select id="start">
-            <option value="Halifax, NS">Halifax, NS</option>
-            <option value="Boston, MA">Boston, MA</option>
-            <option value="New York, NY">New York, NY</option>
-            <option value="Miami, FL">Miami, FL</option>
-        </select>
-        <br>
-        <b>Waypoints:</b> <br>
-        <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
-        <select multiple id="waypoints">
-            <option value="montreal, quebec">Montreal, QBC</option>
-            <option value="toronto, ont">Toronto, ONT</option>
-            <option value="chicago, il">Chicago</option>
-            <option value="winnipeg, mb">Winnipeg</option>
-            <option value="fargo, nd">Fargo</option>
-            <option value="calgary, ab">Calgary</option>
-            <option value="spokane, wa">Spokane</option>
-        </select>
-        <br>
-        <b>End:</b>
-        <select id="end">
-            <option value="Vancouver, BC">Vancouver, BC</option>
-            <option value="Seattle, WA">Seattle, WA</option>
-            <option value="San Francisco, CA">San Francisco, CA</option>
-            <option value="Los Angeles, CA">Los Angeles, CA</option>
-        </select>
-        <br>
         <input type="submit" id="submit">
     </div>
     <div id="directions-panel"></div>
@@ -104,19 +100,29 @@
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         var waypts = [];
-        var checkboxArray = document.getElementById('waypoints');
-        for (var i = 0; i < checkboxArray.length; i++) {
-            if (checkboxArray.options[i].selected) {
-                waypts.push({
-                    location: checkboxArray[i].value,
-                    stopover: true
-                });
-            }
-        }
+        //var checkboxArray = document.getElementById('waypoints');
+        //for (var i = 0; i < checkboxArray.length; i++) {
+           // if (checkboxArray.options[i].selected) {
 
+        <?php
+        $count = 0;
+        foreach ($data as $key => $value) {
+                if (!($count == 0 || $count == count($data))) {
+        ?>
+                    waypts.push({
+                        location: {"lat" : <?php echo $value['end_lat']; ?>,"lng" : <?php echo $value['end_long']; ?>},
+                        stopover: true
+                    });
+        <?php
+            }
+                $count++;
+            }
+        ?>
+           // }
+        //}
         directionsService.route({
-            origin: document.getElementById('start').value,
-            destination: document.getElementById('end').value,
+            origin: {"lat" : {{$data[0]['end_lat']}},"lng" : {{$data[0]['end_long']}}},
+            destination: {"lat" : {{$data[$count-1]['end_lat']}},"lng" : {{$data[$count-1]['end_long']}}},
             waypoints: waypts,
             optimizeWaypoints: true,
             travelMode: 'DRIVING'
@@ -140,9 +146,13 @@
             }
         });
     }
+
+    $(document).ready(function(){
+        $("#submit").trigger('click');
+    });
 </script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGPQjX5WJXHMcbQ9FybEDNlnGS8fyvh0&callback=initMap">
 </script>
 </body>
 </html>

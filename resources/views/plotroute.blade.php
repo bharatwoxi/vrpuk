@@ -33,9 +33,10 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="tspnnResult">Plot Route With Animated Symbol</a></li>
                 <li><a href="tspnnResult">List Form</a></li>
-                <li><a href="plotRouteElevation">Showing Elevation Along Path</a></li>
+                <li><a href="tspnnResult">Plot Route With Animated Symbol</a></li>
+                <!--<li><a href="plotRouteElevation">Showing Elevation Along Path</a></li>-->
+                <li><a href="plotRoutewithWayPoint">Route with Waypoint Google API</a></li>
 
             </ul>
         </div>
