@@ -65,7 +65,7 @@
             var path = <?php echo $path; ?>;  // Badwater, Death Valley
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
+                zoom: 12,
                 center: path[1],
                 mapTypeId: 'terrain'
             });

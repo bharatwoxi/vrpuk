@@ -31,21 +31,23 @@
     </h2>
 </div>
 
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-        <div class="table-responsive">
-            <table class="table">
+<div class="row" style="margin-right: 0px;text-align: center;">
+    <div class="col-sm-12">
+        <div class="table-responsive" style="height: 550px;">
+            <table class="table-condensed" border="1">
                 <tbody>
                 <tr>
+                    <td>Sr.no</td>
                     <td>#</td>
                 @foreach  ($data as $col => $value)
                     <td>{{$col}}</td>
                 @endforeach
                 </tr>
+                <?php $count = 0; ?>
 
                 @foreach ($data as $row=> $dataValue)
                     <tr>
+                    <td><?php echo $count++; ?></td>
                     <td>{{$row}}</td>
                     @foreach ($dataValue as $key => $cost )
                     <td>{{$cost}}</td>
@@ -56,7 +58,6 @@
             </table>
         </div>
     </div>
-    <div class="col-sm-1"></div>
 
 </div>
 

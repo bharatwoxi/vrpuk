@@ -56,7 +56,7 @@
                     <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
                         @foreach ($data['stations'] as $station => $details)
                         <ul class="list-group">
-                            <li class="list-group-item">{{ucfirst($station)}}</li>
+                            <li class="list-group-item">{{ucfirst($details['city_name'])}}</li>
                         </ul>
                         @endforeach
                     </div>

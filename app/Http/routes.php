@@ -22,5 +22,9 @@ Route::get('tspnnResult', array('uses' =>'DataController@tspnnResult'));
 Route::get('plotRoute', array('uses' =>'DataController@plotRoute'));
 Route::get('plotRouteElevation', array('uses' =>'DataController@plotRouteElevation'));
 
+Route::get('getDistancesFromLatLong', array('uses' =>'DataController@getDistancesFromLatLong'));
+
+
+
 
 

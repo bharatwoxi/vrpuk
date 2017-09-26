@@ -26,7 +26,7 @@
 <div class="text-center" style="background-color: #c2c2c2; padding: 10px;">
     <h2>Welcome To POC of TSP : NN - For Vehicle Routing Problem
         <button type="button" class="btn btn-success">
-            <a href="calculateDistances" style="color: #f5f5f5">Calculate Distances using GDM API - Click Here</a>
+            <a href="calculateDistances" style="color: #f5f5f5">Calculate Distances using GeoDataSource - Click Here</a>
         </button>
     </h2>
 </div>
@@ -43,8 +43,8 @@
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(51.509865, -0.118092),
-            zoom: 5
+            center: new google.maps.LatLng(51.215485, -0.631027),
+            zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
 

@@ -75,7 +75,7 @@
             <li class="list-group-item">
                 <ul class="list-group">
                     <li class="list-group-item" style="background-color: #2ca02c;color: #FFFFFF">
-                        Total Cost :  <?php echo $total; ?>
+                        Total Cost :  <?php echo $total." Miles";  ?>
                     </li>
                 </ul>
             </li>
