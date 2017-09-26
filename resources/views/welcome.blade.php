@@ -23,7 +23,7 @@
                     <h3>Station Data</h3>
                     <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
                     @foreach ($data['stations'] as $station => $details)
-                        <p>Station Details : {{ucfirst($station)}}</p>
+                        <p>Station Details : ({{$station+1}})</p>
                         <ul class="list-group">
                             @foreach ($details as $key => $value)
                                 @if ($key == "source" && $value == true)
@@ -31,7 +31,13 @@
                                 @elseif ($key == "source" && $value == false)
                                     <li class="list-group-item" style="background-color: #c1e2b3;">Station : This is the Destination</li>
                                 @else
-                                    <li class="list-group-item">{{ucfirst($key)}} : {{ucfirst($value)}}</li>
+                                    @if ($key == "city_name")
+                                        <li class="list-group-item">Station Name : {{ucfirst($value)}}</li>
+                                    @elseif ($key == "station_name")
+                                        <li class="list-group-item">Station No : {{ucfirst($value)}}</li>
+                                    @else
+                                        <li class="list-group-item">{{ucfirst($key)}} : {{ucfirst($value)}}</li>
+                                    @endif
                                 @endif
                             @endforeach
                         </ul>
@@ -54,9 +60,10 @@
                 <div class="col-sm-4" >
                     <h3>Station List</h3>
                     <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
+                        <?php $count = 0; ?>
                         @foreach ($data['stations'] as $station => $details)
                         <ul class="list-group">
-                            <li class="list-group-item">{{ucfirst($details['city_name'])}}</li>
+                            <li class="list-group-item"><?php echo ++$count;?>) {{ucfirst($details['city_name'])}}</li>
                         </ul>
                         @endforeach
                     </div>
