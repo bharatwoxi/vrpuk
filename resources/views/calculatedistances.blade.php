@@ -25,9 +25,7 @@
 <body>
 <div class="text-center" style="background-color: #c2c2c2; padding: 10px;">
     <h2>Welcome To POC of TSP : NN - For Vehicle Routing Problem
-        <button type="button" class="btn btn-success">
-            <a href="tspnnResult" style="color: #f5f5f5">Apply TSP : NN Algo - Click Here</a>
-        </button>
+        <a class="btn btn-success" href="tspnnResult" style="color: #f5f5f5">Apply TSP : NN Algo - Click Here</a>
     </h2>
 </div>
 
