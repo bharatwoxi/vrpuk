@@ -25,6 +25,12 @@ Route::get('plotRouteElevation', array('uses' =>'DataController@plotRouteElevati
 Route::get('getDistancesFromLatLong', array('uses' =>'DataController@getDistancesFromLatLong'));
 Route::get('plotRoutewithWayPoint', array('uses' =>'DataController@plotRoutewithWayPoint'));
 
+Route::get('scheduleandroutehomepage', array('uses' =>'MasterController@scheduleandroutemainpage'));
+Route::get('plotDataJsonAPINew', array('uses' =>'MasterController@plotDataJsonAPINew'));
+
+
+
+
 
 
 

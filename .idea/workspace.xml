@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="350d61a5-6b47-4e6d-ac2c-7f36c59f4335" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/calculatedistances.blade.php" afterPath="$PROJECT_DIR$/resources/views/calculatedistances.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/plotdata.blade.php" afterPath="$PROJECT_DIR$/resources/views/plotdata.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/bootstrap-multiselect.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/bootstrap-multiselect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/master/homepage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vrpuk.iws" />
@@ -28,67 +29,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DataController.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DataController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1210" selection-end="6186" vertical-scroll-proportion="0.16033755" vertical-offset="698" max-vertical-offset="8568">
+            <state line="233" column="0" selection-start="8057" selection-end="8205" vertical-scroll-proportion="-1.939759" vertical-offset="3997" max-vertical-offset="10872">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="55" selection-start="1289" selection-end="1289" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="648">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MasterController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="38" selection-start="414" selection-end="432" vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="3186">
               <folding>
-                <element signature="e#1225#6185#0" expanded="false" />
+                <element signature="e#561#1894#0" expanded="false" />
+                <element signature="e#1900#2951#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plotwaypoints.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/plotwaypoints.blade.php">
+      <file leaf-file-name="homepage.blade.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/master/homepage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="38" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="2934">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tspgaPlot.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tspgaPlot.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="19" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="10296">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plotroute.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/plotroute.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="41" selection-start="1422" selection-end="1422" vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="2052">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tspnnresultelevation.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tspnnresultelevation.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1685" selection-end="1870" vertical-scroll-proportion="-10.074074" vertical-offset="412" max-vertical-offset="2556">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="19" selection-start="823" selection-end="846" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1404">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calculatedistances.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/calculatedistances.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="8" selection-start="1122" selection-end="1122" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1242">
-              <folding />
+            <state line="66" column="26" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.4891945" vertical-offset="939" max-vertical-offset="5040">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#select#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#select#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,16 +77,7 @@
       <file leaf-file-name="plotdata.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/plotdata.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="4" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="2088">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tspnnresult.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/tspnnresult.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="38" selection-start="1577" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1728">
+            <state line="49" column="66" selection-start="1797" selection-end="1812" vertical-scroll-proportion="-6.7777777" vertical-offset="699" max-vertical-offset="2088">
               <folding />
             </state>
           </provider>
@@ -128,7 +100,6 @@
         <option value="$PROJECT_DIR$/public/imp.txt" />
         <option value="$PROJECT_DIR$/resources/views/plotWaypoints.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/tspgaPlot.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/tspnnresultelevation.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/plotroute.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
@@ -138,6 +109,11 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/calculatedistances.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/plotdata.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/bootstrap-multiselect.js" />
+        <option value="$PROJECT_DIR$/public/css/bootstrap-multiselect.css" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MasterController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/master/homepage.blade.php" />
       </list>
     </option>
   </component>
@@ -223,6 +199,46 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -235,6 +251,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vrpuk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -281,7 +337,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.083333336" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.060185187" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -320,9 +376,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="326" column="0" selection-start="11217" selection-end="11630" vertical-scroll-proportion="0.0" vertical-offset="5868" max-vertical-offset="10908">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -385,9 +439,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="357" column="13" selection-start="11747" selection-end="11747" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7146">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -427,9 +479,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="247" column="0" selection-start="8142" selection-end="8142" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5400">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -450,9 +500,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="247" column="0" selection-start="8142" selection-end="8142" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5400">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -473,9 +521,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="247" column="0" selection-start="8142" selection-end="8142" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5400">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -496,9 +542,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="247" column="0" selection-start="8142" selection-end="8142" vertical-scroll-proportion="0.0" vertical-offset="4446" max-vertical-offset="5400">
-          <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -524,47 +568,28 @@
         <state line="0" column="174" selection-start="0" selection-end="174" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="498" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="33" selection-start="1051" selection-end="1072" vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="540" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="54" selection-start="965" selection-end="965" vertical-scroll-proportion="0.8949416" vertical-offset="170" max-vertical-offset="756" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="823" selection-end="846" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1404">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/calculatedistances.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="8" selection-start="1122" selection-end="1122" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="1242">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/plotdata.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="4" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="2088">
+        <state line="27" column="8" selection-start="1122" selection-end="1122" vertical-scroll-proportion="0.4811321" vertical-offset="231" max-vertical-offset="1242">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/plotroute.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="41" selection-start="1422" selection-end="1422" vertical-scroll-proportion="0.0" vertical-offset="318" max-vertical-offset="2052">
+        <state line="32" column="41" selection-start="1422" selection-end="1422" vertical-scroll-proportion="0.5108911" vertical-offset="318" max-vertical-offset="2052">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/plotwaypoints.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="38" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="2934">
+        <state line="69" column="38" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.3920792" vertical-offset="1044" max-vertical-offset="2934">
           <folding />
         </state>
       </provider>
@@ -578,23 +603,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/tspnnresult.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="38" selection-start="1577" selection-end="1586" vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1728">
+        <state line="37" column="38" selection-start="1577" selection-end="1586" vertical-scroll-proportion="0.50566036" vertical-offset="398" max-vertical-offset="1728">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/tspnnresultelevation.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1685" selection-end="1870" vertical-scroll-proportion="-10.074074" vertical-offset="412" max-vertical-offset="2556">
+        <state line="38" column="0" selection-start="1685" selection-end="1870" vertical-scroll-proportion="0.53861386" vertical-offset="412" max-vertical-offset="2556">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap-multiselect.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="1453" selection-start="1453" selection-end="1453" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bootstrap-multiselect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1703" column="55" selection-start="66405" selection-end="66405" vertical-scroll-proportion="0.55075186" vertical-offset="30361" max-vertical-offset="30978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="31" selection-start="2625" selection-end="2625" vertical-scroll-proportion="1.0019455" vertical-offset="223" max-vertical-offset="1404">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/plotdata.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="66" selection-start="1797" selection-end="1812" vertical-scroll-proportion="-6.7777777" vertical-offset="699" max-vertical-offset="2088">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1210" selection-end="6186" vertical-scroll-proportion="0.16033755" vertical-offset="698" max-vertical-offset="8568">
+        <state line="233" column="0" selection-start="8057" selection-end="8205" vertical-scroll-proportion="-1.939759" vertical-offset="3997" max-vertical-offset="10872">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MasterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="38" selection-start="414" selection-end="432" vertical-scroll-proportion="-10.666667" vertical-offset="0" max-vertical-offset="3186">
           <folding>
-            <element signature="e#1225#6185#0" expanded="false" />
+            <element signature="e#561#1894#0" expanded="false" />
+            <element signature="e#1900#2951#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="55" selection-start="1289" selection-end="1289" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="648">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/master/homepage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="26" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.4891945" vertical-offset="939" max-vertical-offset="5040">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#select#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#select#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
