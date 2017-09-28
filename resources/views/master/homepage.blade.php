@@ -96,6 +96,7 @@
 
 
     <div id="mySidenav" class="sidenav">
+        <form method="post" action="plotScheduleAndRoute">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">DEMO &nbsp;&nbsp;&nbsp; &times;</a>
         <ul class="list-group">
             <li class="list-group-item">
@@ -113,9 +114,12 @@
             <li class="list-group-item">
                 <label>Please Select the Source</label>
                 <select id="source">
-                    <?php foreach($data['stations'] as $key => $value) { ?>
-                        <option value="#">{{$value['city_name']}}</option>
-                    <?php } ?>
+                    <?php foreach($data['source'] as $key => $value) {
+                    ?>
+                                <option value="#">{{$value['station_name']}} : {{$value['city_name']}}</option>
+                    <?php
+                          }
+                    ?>
                 </select>
             </li>
             <li class="list-group-item">
@@ -130,22 +134,14 @@
                     </select>
                 </div>
             </li>
+
             <li class="list-group-item">
-                <label>Please Select the Destination</label>
-                <select id="end">
-                    <?php foreach($data['stations'] as $key => $value) { ?>
-                        <option value="#">{{$value['city_name']}}</option>
-                    <?php } ?>
-                </select>
-            </li>
-            <li class="list-group-item">
-                <a class="btn btn-danger" href="#" style="color: #f5f5f5">
+                <a class="btn btn-danger" href="plotScheduleAndRoute/1" style="color: #f5f5f5">
                     Submit >>
                 </a>
             </li>
         </ul>
-
-
+        </form>
     </div>
 
     <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
@@ -170,6 +166,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example-optionClass').multiselect({
+                includeSelectAllOption: true,
                 optionClass: function(element) {
                     var value = $(element).val();
 
@@ -183,6 +180,7 @@
             });
 
             $('#example-optionClass1').multiselect({
+                includeSelectAllOption: true,
                 optionClass: function(element) {
                     var value = $(element).val();
 
@@ -195,13 +193,16 @@
                 }
             });
         });
-
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var customLabel = {
         S: {
             label: 'S'
         },
         D: {
             label: 'D'
+        },
+        C: {
+            label : 'C'
         }
     };
 

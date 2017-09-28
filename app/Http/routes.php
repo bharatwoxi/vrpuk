@@ -27,6 +27,9 @@ Route::get('plotRoutewithWayPoint', array('uses' =>'DataController@plotRoutewith
 
 Route::get('scheduleandroutehomepage', array('uses' =>'MasterController@scheduleandroutemainpage'));
 Route::get('plotDataJsonAPINew', array('uses' =>'MasterController@plotDataJsonAPINew'));
+Route::get('scheduleVehicleLogic', array('uses' =>'MasterController@scheduleVehicleLogic'));
+Route::get('plotScheduleAndRoute/{vehicle}', array('uses' =>'MasterController@plotScheduleAndRoute'));
+
 
 
 
