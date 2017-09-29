@@ -145,7 +145,6 @@
 
 
     <div id="mySidenav" class="sidenav">
-        <form method="post" action="plotSched   uleAndRoute">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">DEMO &nbsp;&nbsp;&nbsp; &times;</a>
         <ul class="list-group">
             <li class="list-group-item">
@@ -173,15 +172,21 @@
             </li>
             <li class="list-group-item">
                 <label>Please Select delivery station</label>
-                <div id="example-optionClass-container1">
-                    <select id="example-optionClass1" multiple="multiple">
-                        <div style="height: 40px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
-                            @foreach ($data['stations'] as $vehicle => $details)
-                            <option value="{{ucfirst($details['city_name'])}}">{{ucfirst($details['city_name'])}}</option>
-                            @endforeach
+                <form class="form-horizontal" name="temp1" action="scheduleandroutehomepagepost" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <select id="example-post" name="multiselect[]" multiple="multiple">
+                                <div style="height: 400px; overflow-y: scroll; margin-top: 5%; background-color: #f2f2f2; padding: 10px;">
+                                    @foreach ($data['stations'] as $vehicle => $details)
+                                    <option value="{{ucfirst($details['station_id'])}}">{{ucfirst($details['city_name'])}}</option>
+                                    @endforeach
+                                </div>
+                            </select>
+                            <button type="submit" class="btn btn-default">Submit</button>
                         </div>
-                    </select>
-                </div>
+                    </div>
+                </form>
             </li>
 
             <li class="list-group-item">
@@ -189,9 +194,8 @@
                     Submit >>
                 </a>
             </li>
-
         </ul>
-        </form>
+        <input type="hidden" id="destOpt" value="all">
     </div>
 
     <div id="snackbar">
@@ -205,7 +209,15 @@
     <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
     <div id="main"></div>
 
-    <script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#example-post').multiselect({
+                includeSelectAllOption: true
+            });
+        });
+
+        var selectArray = [];
         /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
         function openNav() {
             document.getElementById("mySidenav").style.width = "300px";
@@ -223,11 +235,7 @@
             x.className = "show";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         }
-    </script>
 
-
-
-    <script type="text/javascript">
         $(document).ready(function() {
             $('#example-optionClass').multiselect({
                 includeSelectAllOption: true,
@@ -254,6 +262,22 @@
                     else {
                         return 'odd';
                     }
+                },
+                onChange: function(element, checked) {
+                    if (checked === true) {
+                        //action taken here if true
+                        selectArray.push(element.val())
+                    }
+                    else if (checked === false) {
+                            var tempArr = [];
+                            for (i = 0; i< selectArray.length; i++) {
+                                if (selectArray[i] != element.val()) {
+                                    tempArr.push(selectArray[i])
+                                }
+                                selectArray = tempArr;
+                            }
+                    }
+
                 }
             });
         });
@@ -276,9 +300,11 @@
             zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
+        var optionVal = $("#destOpt").val();
+        var ajaxUrl = "http://localhost/vrpuk/public/plotDataJsonAPINew/"+optionVal;
 
         // Change this depending on the name of your PHP or XML file
-        downloadUrl('http://localhost/vrpuk/public/plotDataJsonAPINew', function(data) {
+        downloadUrl(ajaxUrl, function(data) {
             var jsonObj = JSON.parse(data.responseText);
             if (jsonObj.length != 0) {
                 Array.prototype.forEach.call(jsonObj, function(markerElem) {

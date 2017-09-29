@@ -24,6 +24,14 @@ class MasterController extends Controller
         return view('master.homepage')->with('data', $data);
     }
 
+    public function scheduleandroutemainpagepost(Request $request) {
+        $data = null;
+        $data['vehicles'] = $this->getVehicleInputData();
+        $data['stations'] = $this->getStationInputData();
+        $data['source'] = $this->getSourceStation();
+        return view('master.homepage')->with('data', $data);
+    }
+
     public function plotScheduleAndRoute($vehicle) {
         $data = null;
         $scheduleData = null;
@@ -127,9 +135,13 @@ class MasterController extends Controller
         return null;
     }
 
-    public function plotDataJsonAPINew() {
+    public function plotDataJsonAPINew($dest) {
         $status = 200;
-        $dataInput = $this->getStationInputData();
+        if ($dest != "all") {
+            $dataInput = $this->getStationInputData();
+        } else {
+            $dataInput = $this->getStationInputData();
+        }
         $dataSource = $this->getSourceStation();
         $dataCs = $this->getEVChargingStationInputData();
         $dataStandSource = array_merge($dataInput,$dataSource);
