@@ -160,7 +160,7 @@
                 </div>
             </li>
             <li class="list-group-item">
-                <label>Please Select the Source</label>
+                <label>Source Station : </label>
                 <select id="source">
                     <?php foreach($data['source'] as $key => $value) {
                     ?>
@@ -171,8 +171,8 @@
                 </select>
             </li>
             <li class="list-group-item">
-                <label>Please Select delivery station</label>
-                <form class="form-horizontal" name="temp1" action="scheduleandroutehomepagepost" method="POST">
+                <label>Please Select Delivery Station : </label>
+                <form class="form-horizontal" name="temp1" action="scheduleandroutehomepagepost" method="POST" onsubmit="return validateDestination()">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -188,19 +188,20 @@
                     </div>
                 </form>
             </li>
-
+            <?php if ($data['selectDest'] != "all") { ?>
             <li class="list-group-item">
-                <a class="btn btn-danger" href="plotScheduleAndRoute/1" style="color: #f5f5f5">
-                    Submit >>
+                <a class="btn btn-danger" href="plotScheduleAndRoute/1/{{$data['selectDest']}}" style="color: #f5f5f5">
+                    Start Schedule & Route >>
                 </a>
             </li>
+            <?php } ?>
         </ul>
-        <input type="hidden" id="destOpt" value="all">
+        <input type="hidden" id="destOpt" value="{{$data['selectDest']}}">
     </div>
 
     <div id="snackbar">
         <ul>
-            <li>C - Charging Station</li>
+            <li>CS - Charging Station</li>
             <li>S - Source</li>
             <li>D - Destination</li>
         </ul>
@@ -210,14 +211,28 @@
     <div id="main"></div>
 
     <script type="text/javascript">
-
-        $(document).ready(function() {
+        var selectArray = [];
+         $(document).ready(function() {
             $('#example-post').multiselect({
-                includeSelectAllOption: true
+                includeSelectAllOption: true,
+                onChange: function(element, checked) {
+                    if (checked === true) {
+                        //action taken here if true
+                        selectArray.push(element.val())
+                    }
+                    else if (checked === false) {
+                        var tempArr = [];
+                        for (i = 0; i< selectArray.length; i++) {
+                            if (selectArray[i] != element.val()) {
+                                tempArr.push(selectArray[i])
+                            }
+                            selectArray = tempArr;
+                        }
+                    }
+
+                }
             });
         });
-
-        var selectArray = [];
         /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
         function openNav() {
             document.getElementById("mySidenav").style.width = "300px";
@@ -262,26 +277,20 @@
                     else {
                         return 'odd';
                     }
-                },
-                onChange: function(element, checked) {
-                    if (checked === true) {
-                        //action taken here if true
-                        selectArray.push(element.val())
-                    }
-                    else if (checked === false) {
-                            var tempArr = [];
-                            for (i = 0; i< selectArray.length; i++) {
-                                if (selectArray[i] != element.val()) {
-                                    tempArr.push(selectArray[i])
-                                }
-                                selectArray = tempArr;
-                            }
-                    }
-
                 }
             });
         });
-    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+         function validateDestination() {
+             var selArr = selectArray;
+             if (selArr.length > 0) {
+                 return true;
+             } else {
+                 alert("Please select atleast one destination.");
+                 return false;
+             }
+         }
+
     var customLabel = {
         S: {
             label: 'S'
@@ -290,7 +299,7 @@
             label: 'D'
         },
         C: {
-            label : 'C'
+            label : 'CS'
         }
     };
 

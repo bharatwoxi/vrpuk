@@ -58,7 +58,7 @@
 <body>
 <div class="row" class="text-center" style="background-color: #c1e2b3; padding: 10px;box-shadow: 2px 2px 2px 2px #888888;">
     <div class="col-sm-12" style="font-size:30px;cursor:pointer">
-        <a class="btn btn-danger" href="../scheduleandroutehomepage"><< Back</a>
+        <a class="btn btn-danger" href="../../scheduleandroutehomepage"><< Back</a>
         <span >Welcome To POC of Electric Vehicle Routing Problem using TSP</span>
     </div>
 </div>
@@ -67,12 +67,21 @@
 <div id="right-panel">
     <div>
         <div class="dropdown">
+            <div>
+                <ul class="list-group" style="list-style-type: none;background-color: #5bc0de;text-align: center;color: #fff;">
+                    <li style="color: #ffffff;background-color: #ff6666"><b>Vehicle Name :</b> {{$data['vehicles'][0]['vehicle_name']}}</li>
+                    <li><b>Total Distance Travel :</b> {{round($data['total_travel'],5)}} miles</li>
+                    <li><b>Time Taken :</b> {{round($data['total_travel'],3)/$data['avg_speed_per_hr']*60}} Min</li>
+                    <li><b>Average :</b> {{$data['avg_speed_per_hr']}} miles/hr</li>
+                </ul>
+            </div>
+
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Please Select to Vehicle
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" >
                 <?php foreach ($data['vehicles'] as $key => $value) { ?>
-                    <li><a href='{{$value['vehicle_id']}}'>{{$value['vehicle_name']}}</a></li>
+                    <li><a href='../{{$value['vehicle_id']}}/{{$data['destroute']}}'>{{$value['vehicle_name']}}</a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -108,7 +117,7 @@
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
-            center: {lat: 41.85, lng: -87.65}
+            center: {lat: 51.215485, lng: -0.631027}
         });
         directionsDisplay.setMap(map);
 

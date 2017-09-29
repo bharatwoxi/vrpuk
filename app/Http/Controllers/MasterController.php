@@ -21,25 +21,36 @@ class MasterController extends Controller
         $data['vehicles'] = $this->getVehicleInputData();
         $data['stations'] = $this->getStationInputData();
         $data['source'] = $this->getSourceStation();
+        $data['selectDest'] = 'all';
         return view('master.homepage')->with('data', $data);
     }
 
     public function scheduleandroutemainpagepost(Request $request) {
         $data = null;
-        $data['vehicles'] = $this->getVehicleInputData();
+        $selLoc = $request->input('multiselect');
+        if ($selLoc != null) {
+            $selectLocString = implode('-', $selLoc);
+        } else {
+            $selectLocString = "all";
+        }
+
         $data['stations'] = $this->getStationInputData();
+        $data['vehicles'] = $this->getVehicleInputData();
+        $data['selectDest'] = $selectLocString;
         $data['source'] = $this->getSourceStation();
         return view('master.homepage')->with('data', $data);
     }
 
-    public function plotScheduleAndRoute($vehicle) {
+    public function plotScheduleAndRoute($vehicle, $dest) {
         $data = null;
         $scheduleData = null;
         $scheduleDataWithAdjMat = array();
-        $scheduleData = $this->scheduleVehicleLogic();
+        $scheduleData = $this->scheduleVehicleLogic($dest);
         $sourceData = $this->getSourceStation();
+        $vehicleData = array();
         foreach ($scheduleData as $key => $delMainData) {
             if ($key == "scheduleDelData") {
+
                 foreach ($delMainData as $veh_id => $delData) {
                     $listCity = array();
                     $listCity[] = $sourceData[0]['city_name'];
@@ -47,13 +58,30 @@ class MasterController extends Controller
                             $listCity[] = $value['city_name'];
                     }
                     $scheduleDataWithAdjMat[$veh_id] = $this->tspnnWithoutDestinationAsHub($this->createAdjMatrix($delData, $sourceData), $listCity);
+                    $dataVeh = $this->getVehicleInputData();
+                    foreach($dataVeh as $key => $value) {
+                        if ($value['vehicle_id'] == $veh_id) {
+                            $vehicleData[] = $value;
+                        }
+                    }
                 }
             }
         }
-
         $data['vehicle_info'] = $this->getVehicleInfo($vehicle);
-        $data['vehicles'] = $this->getVehicleInputData();
+        $data['vehicles'] = $vehicleData;
+        foreach ($vehicleData as $key1 => $val1) {
+            if ($val1['vehicle_id'] == $vehicle) {
+                $data['avg_speed_per_hr'] = $val1['avg_speed_per_hr'];
+            }
+        }
+
         $data['route'] = $scheduleDataWithAdjMat[$vehicle];
+        $cost = 0;
+        foreach($data['route'] as $key => $val) {
+            $cost = $cost + $val['cost'];
+        }
+        $data['total_travel'] = $cost;
+        $data['destroute'] = $dest;
         return view('master.scheduleandroute')->with('data', $data);
     }
 
@@ -138,12 +166,23 @@ class MasterController extends Controller
     public function plotDataJsonAPINew($dest) {
         $status = 200;
         if ($dest != "all") {
-            $dataInput = $this->getStationInputData();
+            $selLoc = explode("-", $dest);
+            $stationfinaldata = array();
+            $stData = $this->getStationInputData();
+            foreach ($selLoc as $loc) {
+                foreach ($stData as $key => $val) {
+                    if ( $val['station_id'] == $loc) {
+                        $stationfinaldata[] = $val;
+                    }
+                }
+            }
+            $dataInput = $stationfinaldata;
         } else {
             $dataInput = $this->getStationInputData();
         }
+        $dataCs = array();
         $dataSource = $this->getSourceStation();
-        $dataCs = $this->getEVChargingStationInputData();
+        //$dataCs = $this->getEVChargingStationInputData();
         $dataStandSource = array_merge($dataInput,$dataSource);
         $data = array_merge($dataCs, $dataStandSource);
         return json_encode($data, $status);
@@ -253,13 +292,29 @@ class MasterController extends Controller
         }
     }
 
-    public function scheduleVehicleLogic() {
+    public function scheduleVehicleLogic($dest) {
         $data = null;
         $source = null;
         $end = null;
         $scheduleData = null;
         $vehicles = $this->getVehicleInputData();
-        $stations = $this->getStationInputData();
+        //$stations = $this->getStationInputData();
+
+        if ($dest != "all") {
+            $selLoc = explode("-", $dest);
+            $stationfinaldata = array();
+            $stData = $this->getStationInputData();
+            foreach ($selLoc as $loc) {
+                foreach ($stData as $key => $val) {
+                    if ( $val['station_id'] == $loc) {
+                        $stationfinaldata[] = $val;
+                    }
+                }
+            }
+            $stations = $stationfinaldata;
+        } else {
+            $stations = $this->getStationInputData();
+        }
 
         $scheduleData = $this->scheduleAlgorithm($vehicles,$stations,$source,$end);
         return $scheduleData;
@@ -321,7 +376,8 @@ class MasterController extends Controller
                 "init_battery_charge_per" => 100,
                 "mileage" => 100,
                 "battery_capacity" => 60,
-                "battery_capacity_unit" => "kWh"
+                "battery_capacity_unit" => "kWh",
+                "avg_speed_per_hr" => 60
             ),
             array(
                 "vehicle_id" => 2,
@@ -332,7 +388,8 @@ class MasterController extends Controller
                 "init_battery_charge_per" => 100,
                 "mileage" => 50,
                 "battery_capacity" => 80,
-                "battery_capacity_unit" => "kWh"
+                "battery_capacity_unit" => "kWh",
+                "avg_speed_per_hr" => 50
             ),
             array(
                 "vehicle_id" => 3,
@@ -343,7 +400,8 @@ class MasterController extends Controller
                 "init_battery_charge_per" => 100,
                 "mileage" => 300,
                 "battery_capacity" => 100,
-                "battery_capacity_unit" => "kWh"
+                "battery_capacity_unit" => "kWh",
+                "avg_speed_per_hr" => 40
             )
         );
     }

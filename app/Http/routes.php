@@ -29,7 +29,7 @@ Route::get('scheduleandroutehomepage', array('uses' =>'MasterController@schedule
 Route::post('scheduleandroutehomepagepost', array('uses' =>'MasterController@scheduleandroutemainpagepost'));
 Route::get('plotDataJsonAPINew/{dest}', array('uses' =>'MasterController@plotDataJsonAPINew'));
 Route::get('scheduleVehicleLogic', array('uses' =>'MasterController@scheduleVehicleLogic'));
-Route::get('plotScheduleAndRoute/{vehicle}', array('uses' =>'MasterController@plotScheduleAndRoute'));
+Route::get('plotScheduleAndRoute/{vehicle}/{dest}', array('uses' =>'MasterController@plotScheduleAndRoute'));
 Route::get('inputDataAll', array('uses' =>'MasterController@inputDataAll'));
 
 
