@@ -85,18 +85,67 @@
         #example-optionClass-container1 .multiselect-container1 li.odd {
             background: #eeeeee;
         }
+
+        #snackbar {
+            visibility: visible;
+            min-width: 200px;
+            margin-left: -10px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 2px;
+            padding: 5px;
+            position: fixed;
+            z-index: 1;
+            left: 80%;
+            bottom: 30px;
+            font-size: 13px;
+            opacity: 0.6;
+            font-weight: bolder;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
     </style>
 </head>
 <body>
     <div class="row" style="background-color: #c1e2b3; padding: 10px;box-shadow: 5px 10px 10px 10px #888888;">
         <div class="col-md-12" >
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Welcome To POC of Electric Vehicle Routing Problem using TSP</span>
+            <a class="btn btn-info" href="inputDataAll" style="float:right;color: #f5f5f5;" target="_self">
+                View Data Set >>
+            </a>
         </div>
     </div>
 
 
     <div id="mySidenav" class="sidenav">
-        <form method="post" action="plotScheduleAndRoute">
+        <form method="post" action="plotSched   uleAndRoute">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">DEMO &nbsp;&nbsp;&nbsp; &times;</a>
         <ul class="list-group">
             <li class="list-group-item">
@@ -140,8 +189,17 @@
                     Submit >>
                 </a>
             </li>
+
         </ul>
         </form>
+    </div>
+
+    <div id="snackbar">
+        <ul>
+            <li>C - Charging Station</li>
+            <li>S - Source</li>
+            <li>D - Destination</li>
+        </ul>
     </div>
 
     <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
@@ -158,6 +216,12 @@
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
+        }
+
+        function myFunction() {
+            var x = document.getElementById("snackbar")
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         }
     </script>
 

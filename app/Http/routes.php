@@ -29,6 +29,7 @@ Route::get('scheduleandroutehomepage', array('uses' =>'MasterController@schedule
 Route::get('plotDataJsonAPINew', array('uses' =>'MasterController@plotDataJsonAPINew'));
 Route::get('scheduleVehicleLogic', array('uses' =>'MasterController@scheduleVehicleLogic'));
 Route::get('plotScheduleAndRoute/{vehicle}', array('uses' =>'MasterController@plotScheduleAndRoute'));
+Route::get('inputDataAll', array('uses' =>'MasterController@inputDataAll'));
 
 
 

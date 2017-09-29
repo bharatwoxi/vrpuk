@@ -8,6 +8,14 @@ use App\Http\Requests;
 
 class MasterController extends Controller
 {
+    public function inputDataAll() {
+        $data = null;
+        $data['source'] = $this->getSourceStation();
+        $data['stations'] = $this->getStationInputData();
+        $data['vehicles'] = $this->getVehicleInputData();
+
+        return view('master.inputdataall')->with('data', $data);
+    }
     public function scheduleandroutemainpage() {
         $data = null;
         $data['vehicles'] = $this->getVehicleInputData();
@@ -363,6 +371,7 @@ class MasterController extends Controller
     public function getSourceStation() {
         return array(
             array(
+            "station_id"=> 1,
             "city_name" => "Guildford Main Depot",
             "station_name" => "Main Depot",
             "lat" => 51.215485,
@@ -379,6 +388,7 @@ class MasterController extends Controller
     public function getStationInputData(){
         return array(
             array(
+                "station_id"=> 2,
                 "city_name" => "Guildford Spectrum",
                 "station_name" => "Station 1",
                 "lat" => 51.254144,
@@ -391,6 +401,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 3,
                 "city_name" => "University Of Surrey",
                 "station_name" => "Station 2",
                 "lat" => 51.247913,
@@ -403,6 +414,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 4,
                 "city_name" => "Stoke Park",
                 "station_name" => "Station 3",
                 "lat" => 51.244904,
@@ -415,6 +427,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 5,
                 "city_name" => "Farnham Road Car Park",
                 "station_name" => "Station 4",
                 "lat" => 51.241250,
@@ -427,6 +440,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 6,
                 "city_name" => "Guildford College",
                 "station_name" => "Station 5",
                 "lat" => 51.248665,
@@ -439,6 +453,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 7,
                 "city_name" => "Loseley Park",
                 "station_name" => "Station 6",
                 "lat" => 51.215884,
@@ -451,6 +466,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 8,
                 "city_name" => "Royal Surrey County Hospital",
                 "station_name" => "Station 7",
                 "lat" => 51.244397,
@@ -463,6 +479,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 9,
                 "city_name" => "Surrey NHS Trust",
                 "station_name" => "Station 8",
                 "lat" => 51.243752,
@@ -475,6 +492,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 10,
                 "city_name" => "Wood Street Village",
                 "station_name" => "Station 9",
                 "lat" => 51.254819,
@@ -487,6 +505,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 11,
                 "city_name" => "Watts Gallery - Artists' Village",
                 "station_name" => "Station 10",
                 "lat" => 51.224185,
@@ -499,6 +518,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 12,
                 "city_name" => "AirHop",
                 "station_name" => "Station 11",
                 "lat" => 51.245198,
@@ -511,6 +531,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 13,
                 "city_name" => "G Live",
                 "station_name" => "Station 12",
                 "lat" => 51.238401,
@@ -523,6 +544,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 14,
                 "city_name" => "Guildford Cricket Club",
                 "station_name" => "Station 13",
                 "lat" => 51.243103,
@@ -535,6 +557,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 15,
                 "city_name" => "142 ALDERSHOT ROAD ",
                 "station_name" => "Station 14",
                 "lat" => 51.25098234065978,
@@ -547,6 +570,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 16,
                 "city_name" => "54 LIDDINGTON NEW ROAD",
                 "station_name" => "Station 15",
                 "lat" => 51.25764179310098,
@@ -554,11 +578,12 @@ class MasterController extends Controller
                 "address" => "LIDDINGTON NEW ROAD, 54, Guildford GU3 3AH, UK",
                 "source" => false,
                 "type" => "D",
-                "expected_del_time" => "2017-11-09 10:00:00",
+                "expected_del_time" => "2017-11-15 10:00:00",
                 "parcel_wt" => 27,
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 17,
                 "city_name" => "94 LIDDINGTON NEW ROAD",
                 "station_name" => "Station 16",
                 "lat" => 51.25853686530565,
@@ -571,6 +596,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 18,
                 "city_name" => "39 EPSOM ROAD",
                 "station_name" => "Station 17",
                 "lat" => 51.23768794190298,
@@ -583,6 +609,7 @@ class MasterController extends Controller
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 19,
                 "city_name" => "4 REDWING RISE",
                 "station_name" => "Station 18",
                 "lat" => 51.250067343704224,
@@ -590,11 +617,12 @@ class MasterController extends Controller
                 "address" => "4, REDWING RISE, Guildford GU4 7DU, UK",
                 "source" => false,
                 "type" => "D",
-                "expected_del_time" => "2017-11-09 10:00:00",
+                "expected_del_time" => "2017-11-12 10:00:00",
                 "parcel_wt" => 35,
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 20,
                 "city_name" => "13 ORCHARD ROAD",
                 "station_name" => "Station 19",
                 "lat" => 51.25979555959067,
@@ -602,11 +630,12 @@ class MasterController extends Controller
                 "address" => "13, ORCHARD ROAD, Guildford GU4 7JH, UK",
                 "source" => false,
                 "type" => "D",
-                "expected_del_time" => "2017-11-09 10:00:00",
+                "expected_del_time" => "2017-11-08 10:00:00",
                 "parcel_wt" => 35,
                 "parcel_unit" => "kg"
             ),
             array(
+                "station_id"=> 21,
                 "city_name" => "16 THE MOUNT",
                 "station_name" => "Station 20",
                 "lat" => 51.23449983482633,
