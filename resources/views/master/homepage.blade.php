@@ -145,7 +145,7 @@
 
 
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">DEMO &nbsp;&nbsp;&nbsp; &times;</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span style="font-size: 24px;color: #ff6666">DEMO Ver1.0</span> &times;</a>
         <ul class="list-group">
             <li class="list-group-item">
                 <label>Please Select the Vehicle</label>
@@ -201,7 +201,7 @@
 
     <div id="snackbar">
         <ul>
-            <li>CS - Charging Station</li>
+            <!--<li>CS - Charging Station</li>-->
             <li>S - Source</li>
             <li>D - Destination</li>
         </ul>

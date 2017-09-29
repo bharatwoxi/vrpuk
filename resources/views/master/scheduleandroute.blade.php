@@ -70,9 +70,9 @@
             <div>
                 <ul class="list-group" style="list-style-type: none;background-color: #5bc0de;text-align: center;color: #fff;">
                     <li style="color: #ffffff;background-color: #ff6666"><b>Vehicle Name :</b> {{$data['vehicles'][0]['vehicle_name']}}</li>
-                    <li><b>Total Distance Travel :</b> {{round($data['total_travel'],5)}} miles</li>
-                    <li><b>Time Taken :</b> {{round($data['total_travel'],3)/$data['avg_speed_per_hr']*60}} Min</li>
-                    <li><b>Average :</b> {{$data['avg_speed_per_hr']}} miles/hr</li>
+                    <li><div id="milesTravel"></div></li>
+                    <li><div id="avgSpeed"></div></li>
+                    <li><div id="timeTaken"></div></li>
                 </ul>
             </div>
 
@@ -152,7 +152,8 @@
     destination: {"lat" : {{$data['route'][$count-1]['end_lat']}},"lng" : {{$data['route'][$count-1]['end_long']}}},
     waypoints: waypts,
         optimizeWaypoints: true,
-        travelMode: 'DRIVING'
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.IMPERIAL
     }, function(response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
@@ -160,6 +161,8 @@
             var summaryPanel = document.getElementById('directions-panel');
             summaryPanel.innerHTML = '';
             // For each route, display summary information.
+            var  mileDis = 0;
+            var avgSpeed = {{$data['avg_speed_per_hr']}};
             for (var i = 0; i < route.legs.length; i++) {
                 var routeSegment = i + 1;
                 summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
@@ -167,7 +170,12 @@
                 summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
                 summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                 summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                mileDis = mileDis + ((route.legs[i].distance.value)/1000)/1.609344;
             }
+            $("#milesTravel").html('<b>Total Distance Travel : </b>' + mileDis.toFixed(3) + ' mi');
+            $("#timeTaken").html('<b>Average :</b> ' + avgSpeed + ' miles/hr')
+            $("#avgSpeed").html('<b>Time Taken :</b> ' + ((mileDis.toFixed(3)/avgSpeed)*60).toFixed(3) + ' mins');
+
         } else {
             window.alert('Directions request failed due to ' + status);
         }
